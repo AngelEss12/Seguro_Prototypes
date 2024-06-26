@@ -68,8 +68,6 @@ UI.prototype.llenarOpciones = () => {
 };
 
 UI.prototype.mostrarMensaje = (mensaje, tipo) => {
-
-    // Crear el resultado
     const div = document.createElement('div');
 
     if(tipo === 'error') {
@@ -92,7 +90,7 @@ UI.prototype.mostrarMensaje = (mensaje, tipo) => {
 
 UI.prototype.mostrarResultado = (total, seguro) => {
 
-    const { marca, year, tipo } = seguro;}
+    const {marca, year, tipo} = seguro;
 
     let textoMarca;
 
@@ -110,14 +108,14 @@ UI.prototype.mostrarResultado = (total, seguro) => {
             break;
     };
 
-    // Crear el resultado
+    // Creamos el resultado
     const div = document.createElement('div');
     div.classList.add('mt-10');
     div.innerHTML = `
         <p class="header">Resumen de la cotización</p>
         <p class="font-bold">Marca: <span class="font-normal">${textoMarca}</span></p>
         <p class="font-bold">Año: <span class="font-normal">${year}</span></p>
-        <p class="font-bold">Tipo: <span class="font-normal">${tipo}</span></p>
+        <p class="font-bold">Tipo: <span class="font-normal capitalize">${tipo}</span></p>
         <p class="font-bold">Total: <span class="font-normal">$ ${total}</span></p>
     `;
 
@@ -131,19 +129,20 @@ UI.prototype.mostrarResultado = (total, seguro) => {
         spinner.style.display = 'none' // Se borra el spinner
         resultadoDiv.appendChild(div); // Para despues aparecer el resultado
     }, 3000);
+}
 
 const ui = new UI();
 
 document.addEventListener('DOMContentLoaded', () => {
+
     ui.llenarOpciones();//llena el select con los años...
-});
+})
 
 eventListener();
-
 function eventListener () {
     const formulario = document.querySelector('#cotizar-seguro');
     formulario.addEventListener('submit', cotizarSeguro);
-};
+}
 
 function cotizarSeguro(e) {
     e.preventDefault();
